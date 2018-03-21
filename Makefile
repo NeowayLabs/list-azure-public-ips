@@ -5,12 +5,23 @@ az-docker-run = docker run \
 	-e APP_ID=$(APP_ID) \
 	-e PASSWORD=$(PASSWORD) \
 	-e TENANT_ID=$(TENANT_ID) \
-	listazurepublicips
+	listazurepublicips \
 
 
 .PHONY: export-public-ips
 export-public-ips: setup
-	@$(az-docker-run)
+	@$(az-docker-run) \
+	./AzurePublicIP.sh
+
+.PHONY: export-azure-sizes
+export-azure-sizes: setup
+	@$(az-docker-run) \
+	./AzurePublicIP.sh
+
+.PHONY: export-vms
+export-vms: setup
+	@$(az-docker-run) \
+	./AzurePublicIP.sh
 
 
 .PHONY: setup
