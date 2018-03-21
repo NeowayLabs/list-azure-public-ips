@@ -1,6 +1,6 @@
-# ListAzurePublicIPs
+# AzureLists
 
-The most easy way to get all public IPs from the Azure subscriptions.
+The most easy way to get informations above all your subscriptions at once
 
 ## Prerequisites
 
@@ -23,25 +23,49 @@ export APP_ID="XXXXXXX-XXXXXXX-XXXXXXXX-XXXXXXX"
 Run this command to build your structure
 
 ```bash
-$ make setup
+$ make setup 
 ```
 
-## Getting the IP list
+## Getting the lists
 
-To get the full information from subscriptions, use this command:
+All he lists avaliable to get at this time:
+
+- Public IPs
+
+export a CSV list with: Subscription, VM name, Public IP
 
 ```bash
-$ make
+$ make export-public-ips
 ```
 
-This command will read all the Subscriptons where the Service Principal has the access.
+- Azure VMs sizes
+
+export a CSV list with: Subscription, VM size, Memory, Processor, Disk
+
+```bash
+$ make export-azure-sizes
+```
+
+```bash
+$ make export-public-ips
+```
+
+- Azure VMs
+
+export a CSV list with: Subscription, Resource Group, VM name, VM size
+
+```bash
+$ make export-vms
+```
+
+These command will read all the Subscriptons where the Service Principal has the access.
 
 TIP: Create the Service Principal for this action only with READ permissions.
 
-If you want only the IP list, use this:
+If you want only a specific information, use `awk` to filter. ex:
 
 ```bash
-$ make | awk -F "," '{print $3}'
+$ make export-public-ips | awk -F "," '{print $3}'
 ```
 
 That's all :D
