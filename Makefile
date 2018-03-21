@@ -16,12 +16,12 @@ export-public-ips: setup
 .PHONY: export-azure-sizes
 export-azure-sizes: setup
 	@$(az-docker-run) \
-	./AzurePublicIP.sh
+	./AzureSizes.sh
 
 .PHONY: export-vms
 export-vms: setup
 	@$(az-docker-run) \
-	./AzurePublicIP.sh
+	./AzureVMs.sh
 
 
 .PHONY: setup
